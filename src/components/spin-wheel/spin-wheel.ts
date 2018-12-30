@@ -24,8 +24,8 @@ export class SpinWheelComponent {
     let earnedPoints = this.winningNumbers;
 		let nums: number = 0,
 			padding = { top: 20, right: 40, bottom: 0, left: 0 },
-			w = 200 - padding.left - padding.right,
-			h = 200 - padding.top - padding.bottom,
+			w = 250 - padding.left - padding.right,
+			h = 250 - padding.top - padding.bottom,
 			r = Math.min(w, h) / 2,
 			rotation = 0,
 			oldrotation = 0,
@@ -64,9 +64,10 @@ export class SpinWheelComponent {
 			d.innerRadius = 0;
 			d.outerRadius = r;
 			d.angle = (d.startAngle + d.endAngle) / 2;
-			return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius - 10) + ")";
+			return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (80) + ")";
 		})
-			.attr("text-anchor", "end")
+      .attr("text-anchor", "end")
+      .attr("style", "font-size:18px")
 			.text(function (d, i) {
 				console.log("spinWheelData", d);
 				return d.data;
@@ -112,15 +113,15 @@ export class SpinWheelComponent {
 		container.append("circle")
 			.attr("cx", 0)
 			.attr("cy", 0)
-			.attr("r", 20)
+			.attr("r", 30)
 			.style({ "fill": "white", "cursor": "pointer" });
 		//spin text
 		container.append("text")
 			.attr("x", 0)
 			.attr("y", 2)
 			.attr("text-anchor", "middle")
-			.text("SPIN")
-			.style({ "font-weight": "bold", "font-size": "10px" });
+			.text("Spin")
+			.style({"font-size": "16px" });
 
 
 		function rotTween(to) {

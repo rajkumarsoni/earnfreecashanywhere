@@ -1,65 +1,83 @@
 <ion-header>
 
-	<ion-navbar>
-		<ion-title>Earn Fee Cash</ion-title>
+	<ion-navbar color="secondary">
+		<ion-title>Earn Free Cash</ion-title>
 	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<ion-list>
-		<button ion-item>
-        <ion-icon name="logo-usd"></ion-icon>
-        <span>Coins</span>
-		</button>
-		<button ion-item>
-        <ion-icon name="logo-usd"></ion-icon>
-			<span>Withdraw money</span>
-		</button>
-	</ion-list>
-	<ion-item>
-		<span>Follow Us: </span>
-		<ion-icon name="logo-instagram"></ion-icon>
-	</ion-item>
-	<ion-grid>
+	<ion-grid class="content-header">
 		<ion-row>
-			<ion-col col-6>
-				<ion-icon name="ios-cash-outline"></ion-icon>
+      <ion-col col-2 text-center>
+          <ion-icon name="logo-usd"></ion-icon>
+      </ion-col>
+        <ion-col col-8>
+            <span>100 Coins</span>
+        </ion-col>
+        <ion-col col-2 text-center>
+          <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col col-2 text-center>
+            <ion-icon name="logo-usd"></ion-icon>
+        </ion-col>
+          <ion-col col-8>
+              <span>Withdraw money</span>
+          </ion-col>
+          <ion-col col-2 text-center>
+            <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4 text-center>
+          <span>Follow Us: </span>
+        </ion-col>
+        <ion-col col-8>
+          <ion-icon name="logo-instagram"></ion-icon>
+        </ion-col>
+      </ion-row>
+	</ion-grid>
+	<ion-grid class="feature-cards" no-padding>
+		<ion-row>
+			<ion-col col-5>
+				<ion-icon name="ios-cash-outline"></ion-icon><br/>
 				<span>Claim Money</span>
 			</ion-col>
-			<ion-col col-6 (click)="goTOWheel()">
-				<ion-icon name="ios-nuclear-outline"></ion-icon>
+			<ion-col col-5 (click)="goTOWheel()">
+				<ion-icon name="ios-nuclear-outline"></ion-icon><br/>
 				<span>Try your luck</span>
 			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col col-6>
-				<ion-icon name="ios-card-outline"></ion-icon>
+			<ion-col col-5>
+				<ion-icon name="ios-card-outline"></ion-icon><br/>
 				<span>Credit History</span>
 			</ion-col>
-			<ion-col col-6>
-				<ion-icon name="ios-cash-outline"></ion-icon>
+			<ion-col col-5>
+				<ion-icon name="ios-cash-outline"></ion-icon><br/>
 				<span>Debit History</span>
 			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col col-6>
-				<ion-icon name="ios-person-outline"></ion-icon>
+			<ion-col col-5>
+				<ion-icon name="ios-person-outline"></ion-icon><br/>
 				<span>My Account</span>
 			</ion-col>
-			<ion-col col-6>
-				<ion-icon name="ios-call-outline"></ion-icon>
+			<ion-col col-5>
+				<ion-icon name="ios-call-outline"></ion-icon><br/>
 				<span>Contact Us</span>
 			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col col-6>
-				<ion-icon name="ios-help-circle-outline"></ion-icon>
+			<ion-col col-5>
+				<ion-icon name="ios-help-circle-outline"></ion-icon><br/>
 				<span>Help</span>
 			</ion-col>
-			<ion-col col-6>
-				<ion-icon name="videocam-outline"></ion-icon>
+			<ion-col col-5>
+				<ion-icon name="ios-videocam-outline"></ion-icon><br/>
 				<span>Watch Video to earn more</span>
 			</ion-col>
 		</ion-row>
