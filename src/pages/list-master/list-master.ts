@@ -4,7 +4,8 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 import { Item } from '../../models/item';
 import { Items } from '../../providers';
 
-@IonicPage()
+@IonicPage(
+)
 @Component({
   selector: 'page-list-master',
   templateUrl: 'list-master.html'

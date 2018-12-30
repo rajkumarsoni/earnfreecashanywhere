@@ -4,7 +4,9 @@ import { IonicPage, NavController } from 'ionic-angular';
 
 import { Tab1Root, Tab2Root, Tab3Root } from '../';
 
-@IonicPage()
+@IonicPage({
+  name: 'TabsPage'
+})
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html'

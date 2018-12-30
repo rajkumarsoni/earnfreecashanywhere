@@ -9,9 +9,15 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { AngularFireModule } from 'angularfire2';
+import { GooglePlus } from '../../node_modules/@ionic-native/google-plus';
+
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
+import { firebaseCredentials } from '../credentials/credentials';
+import firebase from 'firebase';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -33,6 +39,7 @@ export function provideSettings(storage: Storage) {
     option4: 'Hello'
   });
 }
+//firebase.initializeApp(firebaseCredentials);
 
 @NgModule({
   declarations: [
@@ -41,6 +48,8 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(firebaseCredentials),
+    AngularFireAuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -60,6 +69,7 @@ export function provideSettings(storage: Storage) {
     Items,
     User,
     Camera,
+    GooglePlus,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
