@@ -1,0 +1,13 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Lucky Spin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<spin-wheel [spinWheelData]="spinWheelData" (winningNumbers)="claimPoints($event)"></spin-wheel>
+</ion-content>

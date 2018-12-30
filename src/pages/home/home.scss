@@ -1,0 +1,23 @@
+page-home {
+    ion-grid {
+        ion-row {
+            ion-col {
+                background-color: #f9f9f9;
+                color: #f1f1f1;
+            }
+        }
+    }
+    ion-list {
+        ion-item {
+            background-color: #f9f9f9;
+            color: #f1f1f1;
+        }
+        button {
+            background-color: #f9f9f9;
+            color: #f1f1f1;
+        }
+    }
+    ion-icon{
+      font-size: 28px;
+    }
+}
