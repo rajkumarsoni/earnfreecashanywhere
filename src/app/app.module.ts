@@ -20,6 +20,7 @@ import firebase from 'firebase';
 import { AngularFirestoreModule} from 'angularfire2/firestore'
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirestoreDbProvider } from '../providers/firestore-db/firestore-db';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -53,6 +54,7 @@ export function provideSettings(storage: Storage) {
     AngularFireModule.initializeApp(firebaseCredentials),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

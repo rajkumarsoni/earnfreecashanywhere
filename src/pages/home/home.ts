@@ -17,6 +17,10 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
 
+  goToClaim(){
+    this.navCtrl.push('claim-money');
+  }
+
   goTOWheel(){
     this.navCtrl.push('luckyWheel');
   }

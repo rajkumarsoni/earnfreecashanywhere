@@ -1,18 +1,48 @@
-<!--
-  Generated template for the ClaimMoneyPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>claim-money</ion-title>
-  </ion-navbar>
+    <ion-navbar color="secondary">
+      <ion-title>Claim Money</ion-title>
+    </ion-navbar>
 
-</ion-header>
-
+  </ion-header>
 
 <ion-content padding>
+
+	<!-- <div class="details">
+		<ion-list>
+			<ion-item color="primary">
+				<div text-left class="left">
+					<span>Total XRP</span>
+				</div>
+				<div text-right class="right">
+					{{balance?.totalBalance | number:'1.4-4'}}
+					<span *ngIf="(balance?.totalBalance | number:'1.4-4') == null">0</span> XRP
+				</div>
+			</ion-item>
+		</ion-list>
+  </div> -->
+  <!-- <ion-grid class="content-header points">
+      <ion-row>
+        <ion-col col-7>
+          <span>Total Points Earned </span>
+        </ion-col>
+        <ion-col col-5 text-right>
+          <span *ngIf="a">{{a | async}}</span>
+        </ion-col>
+      </ion-row>
+  </ion-grid> -->
+	<!--<p class="timer" *ngIf="(currentTime?.currentTime) > (serverTime?.serverTime); else claimNow">{{((currentTime?.currentTime)-(serverTime?.serverTime))+(30*60*1000) | date:'mm:ss' }}</p>
+	<ng-template #claimNow>
+		<p class="timer">Claim Now</p>
+	</ng-template>
+	<button ion-button (click)="claimMoney()" color="secondary" class="buttons" [disabled]="(currentTime?.currentTime) > (serverTime?.serverTime)">
+		Click Here to claim
+  </button> -->
+
+
+  <button (click)="claimMoney()" *ngIf="b">Claim</button>
+  <button (click)="updateMoney()" *ngIf="b">Update</button>
+  <span *ngIf="b">{{b}}</span>
 
 </ion-content>
