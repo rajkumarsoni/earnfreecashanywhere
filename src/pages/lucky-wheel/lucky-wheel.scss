@@ -22,4 +22,33 @@ page-lucky-wheel {
   .points{
     margin-top: 20px;
   }
+
+  .buttons{
+    text-transform: inherit;
+  }
 }
+
+.alert-md .alert-head {
+  background-color: map-get($colors, secondary);
+  color: white;
+  padding: 14px 0;
+  .alert-title {
+      font-size: 18px;
+      text-align: center;
+  }
+}
+
+.alert-md .alert-message {
+  font-size: 16px;
+  padding: 10px 15px;
+}
+
+.alert-button-group {
+  margin: 0 auto;
+  padding: 0 !important;
+  .alert-button {
+      color: map-get($colors, secondary);
+  }
+}
+
+

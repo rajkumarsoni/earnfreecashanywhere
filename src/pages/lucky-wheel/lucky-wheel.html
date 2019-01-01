@@ -11,11 +11,11 @@
 <ion-content padding>
   <ion-grid class="content-header">
     <ion-row>
-      <ion-col col-4 text-center>
-        <span>Spin Left </span>
+      <ion-col col-7>
+        <span>Total Points Earned </span>
       </ion-col>
-      <ion-col col-8 text-right>
-        <span>150</span>
+      <ion-col col-5 text-right>
+        <span *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance">{{userBalanceDetails.claimedBalance}}</span>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -27,22 +27,21 @@
     </ion-col>
     </ion-row>
 </ion-grid>
+
   <spin-wheel [spinWheelData]="spinWheelData" (winningNumbers)="claimPoints($event)"></spin-wheel>
+
   <ion-grid class="content-header points">
-    <ion-row>
-      <ion-col col-7>
-        <span>Total Points Earned </span>
+    <ion-row color="secondary"  *ngIf="userBalanceDetails && (userBalanceDetails.spinWheelTime >  userBalanceDetails.currentTime)">
+      <ion-col col-7 >
+        <span>Come Back in </span>
       </ion-col>
       <ion-col col-5 text-right>
-        <span>150</span>
+        <span>{{(userBalanceDetails.spinWheelTime - userBalanceDetails.currentTime) + (30*60*1000)  | date:'mm:ss'}}</span>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-7>
-        <span>Get More Spin in </span>
-      </ion-col>
-      <ion-col col-5 text-right>
-        <span>00:00:00</span>
+    <ion-row *ngIf="userBalanceDetails && (userBalanceDetails.spinWheelTime <  userBalanceDetails.currentTime)">
+      <ion-col col-12 color="secondary" text-center>
+        <span>Spin Now</span>
       </ion-col>
     </ion-row>
 </ion-grid>

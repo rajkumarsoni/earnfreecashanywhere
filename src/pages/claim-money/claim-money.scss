@@ -1,29 +1,25 @@
 page-claim {
-    ion-content {
-        background: linear-gradient(to right, #f3f3f3, #FFFFFF, #f3f3f3);
-    }
     .content-header {
-      padding: 0;
+        padding: 0;
         ion-row {
-          margin: 5px 0;
-
+            margin: 5px 0;
             ion-col {
-                padding:10px 0;
+                padding: 10px 0;
                 background-color: #f9f9f9;
                 color: #666;
-                ion-icon{
-                  font-size: 20px;
-                  font-weight: 100;
+                ion-icon {
+                    font-size: 20px;
+                    font-weight: 100;
                 }
-                span{
-                  font-size: 16px;
-                  padding: 0 20px;
+                span {
+                    font-size: 16px;
+                    padding: 0 20px;
                 }
             }
         }
     }
-    .points{
-      margin-top: 20px;
+    .points {
+        margin-top: 20px;
     }
     .details {
         margin: 5% 0;
@@ -43,10 +39,35 @@ page-claim {
             margin-right: 5px;
         }
     }
-    .timer{
+    .timer {
         color: #666;
-
-        font-size: 35px;
+        font-size: 50px;
         text-align: center;
     }
+    .buttons{
+      text-transform: inherit;
+    }
 }
+.alert-md .alert-head {
+  background-color: map-get($colors, secondary);
+  color: white;
+  padding: 14px 0;
+  .alert-title {
+      font-size: 18px;
+      text-align: center;
+  }
+}
+
+.alert-md .alert-message {
+  font-size: 16px;
+  padding: 10px 15px;
+}
+
+.alert-button-group {
+  margin: 0 auto;
+  padding: 0 !important;
+  .alert-button {
+      color: map-get($colors, secondary);
+  }
+}
+

@@ -1,3 +1,6 @@
 export interface TotalBalance{
-    totalBalance: any;
+  claimedBalance: any;
+    claimedTime: any;
+    currentTime: any;
+    spinWheelTime: any;
 }
