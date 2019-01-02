@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { timer } from 'rxjs/observable/timer';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { AlertConfigurationService } from '../../services/alert-configuration.service';
 
 @IonicPage({
   name: 'claim-money'
@@ -31,7 +32,7 @@ export class ClaimMoneyPage {
   /** @ignore */
   constructor(
     public loadingCtrl: LoadingController,
-    private alrtCtrl: AlertController,
+    private alertConfigService: AlertConfigurationService,
     public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
     public firestore: AngularFirestore, private afAuth: AngularFireAuth
@@ -39,20 +40,17 @@ export class ClaimMoneyPage {
 
   /** Ionic lifecycle hook. */
   ionViewDidLoad() {
-    try{
-      let a;
+    try {
       this.afAuth.authState.subscribe(auth => {
-        if(auth && auth.email && auth.uid){
-        let abc = this.firestore.collection(`totalBalance`).doc(`${auth.uid}`).valueChanges();
-        abc.subscribe(data=>{
-          this.userBalanceDetails = data;
-        })
-      }
-          //this.userBalanceDetails = data;
-        })
-      ;
-      //alert(`aaaa${this.userBalanceDetails.claimedBalance}`);
-    }catch(e){
+        if (auth && auth.email && auth.uid) {
+          let fetchedData = this.firestore.collection(`totalBalance`).doc(`${auth.uid}`).valueChanges();
+          fetchedData.subscribe(data => {
+            this.userBalanceDetails = data;
+          })
+        }
+      });
+
+    } catch (e) {
       alert(e);
     }
 
@@ -78,12 +76,7 @@ export class ClaimMoneyPage {
     this.firestoreDB.claimMoney(this.randomNumber)
       .then(
         () => {
-         let alert =  this.alrtCtrl.create({
-            title: 'Claimed Amount',
-            message: `Congrats you have earned ${this.randomNumber} points.`,
-            buttons: ['ok']
-          });
-          alert.present();
+          this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
         }
       );
   }
@@ -93,15 +86,9 @@ export class ClaimMoneyPage {
     this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
     this.userBalanceDetails.claimedBalance += this.randomNumber;
     this.afAuth.authState.subscribe(auth => {
-    this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid).then(()=>{
-      alert("succss");
-      let alet =  this.alrtCtrl.create({
-        title: 'Claimed Amount',
-        message: `Congrats you have earned ${this.randomNumber} points.`,
-        buttons: ['ok']
+      this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, false).then(() => {
+        this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
       });
-      alet.present();
-    });
-  })
+    })
   }
 }

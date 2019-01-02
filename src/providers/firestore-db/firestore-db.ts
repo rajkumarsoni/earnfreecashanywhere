@@ -30,17 +30,17 @@ export class FirestoreDbProvider {
 
   }
 
-  updateBalance(claimedBalance, uid):any {
+  updateBalance(claimedBalance, uid, isSpin):any {
     let claimedTimeInUTC = new Date();
-    let a;
+    let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (10 * 60 * 1000) : claimedTimeInUTC.getTime();
 
-    a =  this.firestore.doc(`totalBalance/${uid}`).update({
+    return this.firestore.doc(`totalBalance/${uid}`).update({
 
         claimedBalance: claimedBalance,
         claimedTime: claimedTimeInUTC.getTime() + (5 * 60 * 1000),
-        spinWheelTime: claimedTimeInUTC.getTime() + (10 * 60 * 1000)
+        spinWheelTime: spinClaimedTime
       })
-      return a;
+
 
 
   }

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
 import { FirestoreDbProvider } from '../../providers/firestore-db/firestore-db';
-import { TotalBalance } from '../../interface/total-Balance.modal';
 
 import { Subscription } from 'rxjs';
 import { timer } from 'rxjs/observable/timer';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AlertConfigurationService } from '../../services/alert-configuration.service';
 
 @IonicPage({
   name: 'luckyWheel'
@@ -17,16 +17,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LuckyWheelPage {
 
-  spinWheelData = [40,30,20,10,0,10,20,30,40];
+  spinWheelData = [40, 30, 20, 10, 0, 10, 20, 30, 40];
 
   /** This variable is used for storing user balance details. */
   userBalanceDetails: any;
 
- /** This variable is used for subscription. */
- subscription: Subscription;
+  /** This variable is used for subscription. */
+  subscription: Subscription;
 
   constructor(
     public loadingCtrl: LoadingController,
+    private alertConfigService: AlertConfigurationService,
     private alrtCtrl: AlertController,
     public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
@@ -34,20 +35,16 @@ export class LuckyWheelPage {
   }
 
   ionViewDidLoad() {
-    try{
-      let a;
+    try {
       this.afAuth.authState.subscribe(auth => {
-        if(auth && auth.email && auth.uid){
-        let abc = this.firestore.collection(`totalBalance`).doc(`${auth.uid}`).valueChanges();
-        abc.subscribe(data=>{
-          this.userBalanceDetails = data;
-        })
-      }
-          //this.userBalanceDetails = data;
-        })
-      ;
-      //alert(`aaaa${this.userBalanceDetails.claimedBalance}`);
-    }catch(e){
+        if (auth && auth.email && auth.uid) {
+          let abc = this.firestore.collection(`totalBalance`).doc(`${auth.uid}`).valueChanges();
+          abc.subscribe(data => {
+            this.userBalanceDetails = data;
+          })
+        }
+      });
+    } catch (e) {
       alert(e);
     }
   }
@@ -64,32 +61,35 @@ export class LuckyWheelPage {
     let currentDate = new Date();
     return currentDate.getTime();
   }
-  abc(){
 
-  }
-  claimPoints(points){
-    let timeRemaining:number =(this.userBalanceDetails.spinWheelTime - this.userBalanceDetails.currentTime);
-    if(this.userBalanceDetails.spinWheelTime <  this.userBalanceDetails.currentTime){
-    this.userBalanceDetails.claimedBalance += points;
-    this.afAuth.authState.subscribe(auth => {
-    this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid).then(()=>{
-      let alert =  this.alrtCtrl.create({
-        title: 'Claimed Amount',
-        message: `Congrats you have earned ${points} points.`,
-        buttons: ['ok']
+  /**
+   * This method is used for claim money using wheel.
+   * @param points points which earned by user.
+   */
+  claimPoints(points) {
+
+    if (this.userBalanceDetails.spinWheelTime < this.userBalanceDetails.currentTime) {
+      this.userBalanceDetails.claimedBalance += points;
+      this.afAuth.authState.subscribe(auth => {
+        this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, true).then(() => {
+          this.alertConfigService.getClaimedAlertConfig(points);
+        })
       });
-      alert.present();
-    })
-    });
-  }else{
-    let min = Math.floor(timeRemaining/60000);
-   let sec:number = parseInt(((timeRemaining % 60000)/ 1000).toFixed(0));
-    let alert =  this.alrtCtrl.create({
+    } else {
+      this.getAlertPopup();
+    }
+  }
+
+/** This method is used for shwoing alert popup. */
+  getAlertPopup() {
+    let timeRemaining: number = (this.userBalanceDetails.spinWheelTime - this.userBalanceDetails.currentTime);
+    let min = Math.floor(timeRemaining / 60000),
+      sec: number = parseInt(((timeRemaining % 60000) / 1000).toFixed(0));
+
+      this.alrtCtrl.create({
       title: 'Please Wait...',
       message: `Please comeback after ${min} minute and ${(sec < 10) ? '0' : ''}${sec} second to earn points.`,
       buttons: ['ok']
-    });
-    alert.present();
-  }
+    }).present();
   }
 }
