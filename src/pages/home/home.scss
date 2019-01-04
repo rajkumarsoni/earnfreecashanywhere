@@ -5,7 +5,7 @@ page-home {
           margin: 5px 0;
             ion-col {
               padding:10px 0;
-                background-color: #f9f9f9;
+                background-color: #fcfcfc;
                 color: #666;
                 ion-icon{
                   font-size: 20px;
@@ -19,22 +19,23 @@ page-home {
     }
     ion-list {
         ion-item {
-            background-color: #f9f9f9;
+            background-color: #fcfcfc;
             color: #f1f1f1;
         }
         button {
-            background-color: #f9f9f9;
+            background-color: #fcfcfc;
             color: #f1f1f1;
         }
     }
     .feature-cards{
       ion-col{
-        background-color: #f9f9f9;
+        background-color: #fcfcfc;
         margin: 1% 1%;
         padding: 10px !important;
         text-align: center;
         ion-icon{
           font-size: 65px;
+          color: #be1f24;
         }
         span{
           font-size: 14px;

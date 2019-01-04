@@ -4,12 +4,15 @@ page-withdraw {
         ion-row {
             margin: 5px 0;
             ion-col {
+              padding: 10px;
               .wallet-details{
                 color: #333;
                 font-size: 14px;
               }
               .wallet-address{
-                color: #be1f24;
+                color: #333;
+                font-size: 15px;
+                font-weight: 600;
               }
 
                 background-color: #f9f9f9;

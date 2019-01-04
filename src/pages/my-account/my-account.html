@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>My Account</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding n*ngIf="userProfile">
+  <div text-center>
+  <ion-img height="100" width="100" [src]="userProfile?.photoURL"></ion-img>
+</div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3 class="field" text-left>Name:</ion-col>
+      <ion-col col-9 class="value" >{{ userProfile?.displayName}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 class="field" text-left>Email Id:</ion-col>
+      <ion-col col-9 class="value" >{{ userProfile?.email}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 class="field" text-left>Phone Number:</ion-col>
+      <ion-col col-9 class="value" >8269070073</ion-col>
+    </ion-row>
+  </ion-grid>
+  <button ion-button  round outline>Add or Update your Phone Number</button>
+</ion-content>

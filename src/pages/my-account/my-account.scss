@@ -1,0 +1,30 @@
+page-my-account {
+ion-grid{
+  margin-top: 20px;
+  .field{
+    font-size: 15px;
+    color: #333;
+    font-weight: 100;
+  }
+  .value{
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+  }
+}
+.button-round-md{
+ margin-top: 20px;
+  border-radius: 64px;
+  padding: 0 2.6rem;
+  border-color: brown;
+  color: brown;
+  /* margin: 0 auto; */
+  text-align: center;
+  width: 96%;
+}
+ion-img{
+  margin-top: 20px;
+  border: 1px solid #be1f24;
+  border-radius: 70px;
+}
+}

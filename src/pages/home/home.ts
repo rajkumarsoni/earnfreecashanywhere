@@ -15,6 +15,7 @@ export class HomePage {
   /** This variable is used for storing user balance details. */
   userBalanceDetails: any;
 
+  userProfile: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private firestoreDB: FirestoreDbProvider,
     public firestore: AngularFirestore, private afAuth: AngularFireAuth) {
   }
@@ -22,6 +23,22 @@ export class HomePage {
   /** Ionic lifecycle hook. */
   ionViewDidLoad() {
     try {
+      this.afAuth.auth.onAuthStateChanged(user=>{
+       if(user){
+        this.userProfile = user;
+
+        //alert(JSON.stringify(user))
+      }else{
+        this.userProfile = null
+      }
+      });
+      // firebase.auth().onAuthStateChanged(user => {
+      //   if (user) {
+      //     this.userProfile = user;
+      //   } else {
+      //     this.userProfile = null;
+      //   }
+      // });
       this.afAuth.authState.subscribe(auth => {
         if (auth && auth.email && auth.uid) {
           let fetchedData = this.firestore.collection(`totalBalance`).doc(`${auth.uid}`).valueChanges();
@@ -47,5 +64,13 @@ export class HomePage {
 
   goToWithdraw(){
     this.navCtrl.push('withdraw-page');
+  }
+
+  goToTransactionHistory(){
+    this.navCtrl.push('transaction-history');
+  }
+
+  goToMyAccounts(){
+    this.navCtrl.push('my-account');
   }
 }

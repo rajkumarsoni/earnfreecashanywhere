@@ -1,0 +1,18 @@
+page-transaction-history {
+    .transactions {
+      ion-row{
+
+      }
+        .head {
+            font-size: 15px;
+            font-weight: 700;
+            color: #666;
+        }
+        .value {
+          text-align: right;
+            font-weight: 300;
+            font-size: 14px;
+            color: #666;
+        }
+    }
+}

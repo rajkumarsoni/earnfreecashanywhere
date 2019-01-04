@@ -11,7 +11,7 @@
   <ion-grid class="content-header">
       <ion-row>
           <ion-col col-12>
-            <span color="secondary">Welcome back Rajkumar Soni :)</span>
+            <span color="secondary">Welcome back {{userProfile?.displayName}}</span>
           </ion-col>
         </ion-row>
     <ion-row>
@@ -22,7 +22,7 @@
           <span *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance">{{userBalanceDetails.claimedBalance}}</span>
       </ion-col>
       <ion-col col-2 text-center>
-        <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+        <!-- <ion-icon name="ios-arrow-forward-outline"></ion-icon> -->
       </ion-col>
     </ion-row>
     <ion-row (click)="goToWithdraw()">
@@ -34,14 +34,6 @@
       </ion-col>
       <ion-col col-2 text-center>
         <ion-icon name="ios-arrow-forward-outline"></ion-icon>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-4 text-center>
-        <span>Follow Us: </span>
-      </ion-col>
-      <ion-col col-8>
-        <ion-icon name="logo-instagram"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -57,8 +49,8 @@
       </ion-col>
     </ion-row>
     <ion-row>
-     <ion-col col-5>
-        <ion-icon name="ios-cash-outline"></ion-icon><br />
+     <ion-col col-5 (click)="goToTransactionHistory()">
+        <ion-icon name="ios-cash-outline" ></ion-icon><br />
         <span>Transaction History</span>
       </ion-col>
       <ion-col col-5>
@@ -67,7 +59,7 @@
         </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-5>
+      <ion-col col-5 (click)="goToMyAccounts()">
         <ion-icon name="ios-person-outline"></ion-icon><br />
         <span>My Account</span>
       </ion-col>
