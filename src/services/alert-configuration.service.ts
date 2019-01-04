@@ -16,4 +16,22 @@ export class AlertConfigurationService{
     alert.present();
   }
 
+  getSuccessfullPaymentsPopup(){
+    let alert =  this.alrtCtrl.create({
+      title: 'Requested Successfully',
+      message: `You withdraw request recived successfully you can track that in transaction history page.`,
+      buttons: ['ok']
+    });
+    alert.present();
+  }
+
+  getUnSuccessfullPaymentsPopup(){
+    let alert =  this.alrtCtrl.create({
+      title: 'Insufficient Balance',
+      message: `Your balance is insuffient please try after earning more points.`,
+      buttons: ['ok']
+    });
+    alert.present();
+  }
+
 }

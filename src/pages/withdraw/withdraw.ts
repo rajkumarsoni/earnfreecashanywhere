@@ -17,4 +17,8 @@ export class WithdrawPage {
     console.log('ionViewDidLoad WithdrawPage');
   }
 
+  paymentDetail(points: number, walletType: string, money: string){
+    this.navCtrl.push('payments-details', {amount: points, wallet: walletType, money: money});
+  }
+
 }

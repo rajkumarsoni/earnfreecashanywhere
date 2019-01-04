@@ -1,0 +1,28 @@
+<ion-header>
+
+	<ion-navbar color="secondary">
+		<ion-title>Request Payments</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-card class="info" no-padding>
+		<ion-card-header>
+        <ion-icon name="ios-information-circle-outline"></ion-icon> <span>Payment Info</span>
+		</ion-card-header>
+		<ion-card-content>
+      <span>1. Payment will be send on your {{ selectedAccount.wallet }} wallet address.</span>
+      <span>2. You will recive you payment within 24hrs after requesting.</span>
+      <span>3. We are not responsible if payment is pending from {{ selectedAccount.wallet }}.</span>
+      <span>4. We will pay you on you registered wallet address: 8269070073</span>
+		</ion-card-content>
+  </ion-card>
+  <ion-card class="amount-info" no-padding>
+    <ion-card-header>Requested Amount</ion-card-header>
+    <ion-card-content>{{selectedAccount.amount}} Points Which is {{selectedAccount.money}}</ion-card-content>
+  </ion-card>
+  <button ion-button round outline (click)="requestPayments(selectedAccount.amount)">Request Payment</button>
+</ion-content>

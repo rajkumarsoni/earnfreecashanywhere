@@ -1,0 +1,48 @@
+page-payment-details {
+  .info{
+    ion-card-header{
+      ion-icon{
+        font-size: 22px;
+      }
+      text-align: center;
+      background-color: #be1f24;
+      font-size: 18px;
+      color: white;
+    }
+    ion-card-content{
+      span{
+        display: block;
+        color: #666;
+        font-size: 14px;
+        padding: 5px;
+      }
+    }
+  }
+  .amount-info{
+    ion-card-header{
+      text-align: center;
+      background-color: #be1f24;
+      font-size: 16px;
+      color: white;
+    }
+    ion-card-content{
+      //span{
+        text-align: center;
+        display: block;
+        color: #666;
+        font-size: 14px;
+        padding: 5px;
+        margin-top: 10px;
+     // }
+    }
+  }
+  .button-round-md{
+    border-radius: 64px;
+    padding: 0 2.6rem;
+    border-color: brown;
+    color: brown;
+    /* margin: 0 auto; */
+    text-align: center;
+    width: 96%;
+  }
+}

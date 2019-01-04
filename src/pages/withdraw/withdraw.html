@@ -9,29 +9,34 @@
 <ion-content>
   <ion-grid class="content-header">
     <ion-row>
-      <ion-col col-12 text-center>
-        <span>Paytm Number: 8269070073 </span>
+      <ion-col col-12>
+        <span class="wallet-details">Paytm Number: </span><span class="wallet-address"> 8269070073</span>
       </ion-col>
-      <ion-col col-12 text-center>
-        <span>Paypal Email: sonirajkumar031@gmail.com </span>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <span class="wallet-details">Paypal Email: </span> <span class="wallet-address">sonirajkumar031@gmail.com </span>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div>
-    <ion-icon name="ios-information-circle-outline"></ion-icon>
+  <!-- <div>
+
     <span class="note">
+    <ion-icon name="ios-information-circle-outline"></ion-icon>
       In order to change mobile number or email address please go to MyAccount section.
     </span><br />
-    <ion-icon name="ios-information-circle-outline"></ion-icon>
+
     <span class="note">
+    <ion-icon name="ios-information-circle-outline"></ion-icon>
       1000 Points is equivalent to 2 INR.
     </span><br />
-    <ion-icon name="ios-information-circle-outline"></ion-icon>
+
     <span class="note">
+    <ion-icon name="ios-information-circle-outline"></ion-icon>
       1000 Points is equivalent to 0.05 USD.
     </span>
-  </div>
-  <ion-grid class="feature-cards" no-padding>
+  </div> -->
+  <!-- <ion-grid class="feature-cards" no-padding>
     <ion-row>
       <ion-col col-5>
         <span class="wallet-name">PAYTM</span><br />
@@ -72,5 +77,59 @@
         <span class="amount">10 $</span>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+  <ion-card class="card-block" (click)="paymentDetail(5000, 'paytm', '5 Rs.')">
+    <ion-card-header class="header">
+      <span class="pay">PAY</span><span class="tm">TM</span>
+    </ion-card-header>
+    <ion-card-content>
+      <span class="coin">5000 Coins</span>
+      <span class="money">Rs.5</span>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="card-block" (click)="paymentDetail(10000, 'paytm', '15 Rs.')">
+    <ion-card-header class="header">
+      <span class="pay">PAY</span><span class="tm">TM</span>
+    </ion-card-header>
+    <ion-card-content>
+      <span class="coin">10,000 Coins</span>
+      <span class="money">Rs.15</span>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="card-block" (click)="paymentDetail(15000, 'paytm', '30 Rs.')">
+    <ion-card-header class="header">
+      <span class="pay">PAY</span><span class="tm">TM</span>
+    </ion-card-header>
+    <ion-card-content>
+      <span class="coin">15,000 Coins</span>
+      <span class="money">Rs.30</span>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="card-block" (click)="paymentDetail(12000, 'paypal', '0.5 $')">
+    <ion-card-header class="header">
+      <span class="pay">Pay</span><span class="tm">Pal</span>
+    </ion-card-header>
+    <ion-card-content>
+      <span class="coin">12,000 Coins</span>
+      <span class="money">0.5 $</span>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="card-block" (click)="paymentDetail(17000, 'paypal', '1 $')">
+    <ion-card-header class="header">
+      <span class="pay">Pay</span><span class="tm">Pal</span>
+    </ion-card-header>
+    <ion-card-content>
+      <span class="coin">17,000 Coins</span>
+      <span class="money">1 $</span>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="card-block" (click)="paymentDetail(25000, 'paypal', '2 $')">
+    <ion-card-header class="header">
+      <span class="pay">Pay</span><span class="tm">Pal</span>
+    </ion-card-header>
+    <ion-card-content>
+      <span class="coin">25,000 Coins</span>
+      <span class="money">2 $</span>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
