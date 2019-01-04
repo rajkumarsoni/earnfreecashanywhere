@@ -67,11 +67,18 @@ export class LuckyWheelPage {
    * @param points points which earned by user.
    */
   claimPoints(points) {
+    if(!this.userBalanceDetails){
+      this.afAuth.authState.subscribe(auth => {
+        this.firestoreDB.claimMoney(points, auth.uid, false, true).then(() => {
+          this.alertConfigService.getClaimedAlertConfig(points);
 
-    if (this.userBalanceDetails.spinWheelTime < this.userBalanceDetails.currentTime) {
+      alert("inside")
+        })
+      });
+    }else if (this.userBalanceDetails.spinWheelTime < this.userBalanceDetails.currentTime) {
       this.userBalanceDetails.claimedBalance += points;
       this.afAuth.authState.subscribe(auth => {
-        this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, true).then(() => {
+        this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, true, false).then(() => {
           this.alertConfigService.getClaimedAlertConfig(points);
         })
       });

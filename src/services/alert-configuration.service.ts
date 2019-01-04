@@ -19,7 +19,7 @@ export class AlertConfigurationService{
   getSuccessfullPaymentsPopup(){
     let alert =  this.alrtCtrl.create({
       title: 'Requested Successfully',
-      message: `You withdraw request recived successfully you can track that in transaction history page.`,
+      message: `You withdraw request recieved successfully you can track your request in transaction history page.`,
       buttons: ['ok']
     });
     alert.present();

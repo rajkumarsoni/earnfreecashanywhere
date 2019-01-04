@@ -73,12 +73,15 @@ export class ClaimMoneyPage {
   /** This method is used for claim money. */
   claimMoney() {
     this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
-    this.firestoreDB.claimMoney(this.randomNumber)
+    this.afAuth.authState.subscribe(auth => {
+    this.firestoreDB.claimMoney(this.randomNumber, auth.uid, true, false)
       .then(
         () => {
           this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
         }
-      );
+      )
+      ;
+      })
   }
 
   /** This variable is used for update money */
@@ -86,7 +89,7 @@ export class ClaimMoneyPage {
     this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
     this.userBalanceDetails.claimedBalance += this.randomNumber;
     this.afAuth.authState.subscribe(auth => {
-      this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, false).then(() => {
+      this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, false, true).then(() => {
         this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
       });
     })

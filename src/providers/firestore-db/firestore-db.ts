@@ -10,17 +10,20 @@ export class FirestoreDbProvider {
     console.log('Hello FirestoreDbProvider Provider');
   }
 
-  claimMoney(claimedBalance):any{
+  claimMoney(claimedBalance, uid, isClaimedTime, isSpin):any{
     let a,
       claimedTimeInUTC = new Date();
-   this.afAuth.authState.subscribe(auth => {
-    a =   this.firestore.doc(`totalBalance/${auth.uid}`).set({
+    let claimedTime = isClaimedTime ? claimedTimeInUTC.getTime() + (5 * 60 * 1000) : claimedTimeInUTC.getTime();
+    let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (10 * 60 * 1000) : claimedTimeInUTC.getTime();
+  //  this.afAuth.authState.subscribe(auth => {
+    return  this.firestore.doc(`totalBalance/${uid}`).set({
         claimedBalance: claimedBalance,
         currentTime: claimedTimeInUTC.getTime(),
-        claimedTime: claimedTimeInUTC.getTime() + (5 * 60 * 1000)
+        claimedTime: claimedTime,
+        spinWheelTime: spinClaimedTime
       })
-      return a;
-    })
+     // return a;
+    // })
 
   }
 
@@ -30,14 +33,15 @@ export class FirestoreDbProvider {
 
   }
 
-  updateBalance(claimedBalance, uid, isSpin):any {
+  updateBalance(claimedBalance, uid, isSpin, isClaimedTime):any {
     let claimedTimeInUTC = new Date();
+    let claimedTime = isClaimedTime ? claimedTimeInUTC.getTime() + (5 * 60 * 1000) : claimedTimeInUTC.getTime();
     let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (10 * 60 * 1000) : claimedTimeInUTC.getTime();
 
     return this.firestore.doc(`totalBalance/${uid}`).update({
 
         claimedBalance: claimedBalance,
-        claimedTime: claimedTimeInUTC.getTime() + (5 * 60 * 1000),
+        claimedTime: claimedTime,
         spinWheelTime: spinClaimedTime
       })
 
@@ -54,4 +58,17 @@ export class FirestoreDbProvider {
     })
     return a;
   }
+
+  addWithdrawRequest(amount, walletAddress){
+    let currentTime = new Date();
+    this.afAuth.authState.subscribe(auth =>{
+      this.firestore.collection(`${auth.uid}`).add({
+        amount: amount,
+        walletAddress: walletAddress,
+        requestedDate: currentTime.getTime()
+      })
+    })
+
+  }
+
 }

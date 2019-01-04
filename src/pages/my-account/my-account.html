@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content padding n*ngIf="userProfile">
+<ion-content padding *ngIf="userProfile">
   <div text-center>
   <ion-img height="100" width="100" [src]="userProfile?.photoURL"></ion-img>
 </div>
