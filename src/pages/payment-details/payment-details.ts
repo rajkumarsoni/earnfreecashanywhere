@@ -54,7 +54,7 @@ phoneNumber: any;
       this.afAuth.authState.subscribe(auth => {
         let wallet = (this.selectedAccount.wallet == "paypal") ? auth.email : this.phoneNumber.phoneNumber;
         this.firestoreDB.addWithdrawRequest(amount, wallet);
-        this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance - amount, auth.uid, false, false);
+        this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance - amount, auth.uid, false, false, false);
       })
     } else {
       this.alertConfigService.getUnSuccessfullPaymentsPopup();

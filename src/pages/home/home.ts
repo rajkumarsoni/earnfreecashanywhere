@@ -78,6 +78,10 @@ export class HomePage {
     this.navCtrl.push('help-page');
   }
 
+  goToContactUsPage(){
+    this.navCtrl.push('contact-us');
+  }
+
   goToWatchVideoSection(){
     this.navCtrl.push('watch-video')
   }

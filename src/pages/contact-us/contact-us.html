@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar  color="secondary">
+    <ion-title>Contact Us</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (submit)="contactUsMessage()">
+        <ion-list>
+
+          <ion-item>
+            <ion-label placeholder>Enter your query here</ion-label>
+            <ion-textarea  type="text" [(ngModel)]="message" name="message"></ion-textarea>
+          </ion-item>
+
+          <div padding>
+            <button ion-button color="secondary" block>Submit Query</button>
+          </div>
+
+        </ion-list>
+      </form>
+      <div padding>
+          <button ion-button color="secondary" block (click)="goToContactHistory()">Contact History</button>
+        </div>
+</ion-content>

@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar   color="secondary">
     <ion-title>Watch Video</ion-title>
   </ion-navbar>
 
@@ -19,7 +19,7 @@
           </ion-col>
         </ion-row>
     </ion-grid>
-    <p class="timer" *ngIf="userBalanceDetails && (userBalanceDetails.claimedTime >  userBalanceDetails.currentTime); else claimNow">{{(userBalanceDetails.watchVideo - userBalanceDetails.currentTime) + (30*60*1000)  | date:'hh:mm:ss'}}</p>
+    <p class="timer" *ngIf="userBalanceDetails && (userBalanceDetails.watchVideo >  userBalanceDetails.currentTime); else claimNow">{{(userBalanceDetails.watchVideo - userBalanceDetails.currentTime) + (30*60*1000)  | date:'mm:ss'}}</p>
     <ng-template #claimNow>
       <p class="timer">Watch Now</p>
     </ng-template>

@@ -1,0 +1,14 @@
+page-contact-us {
+  .label-md{
+    color: #be1f24 !important;
+  }
+  .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+    border-bottom-color: #32db64;
+    box-shadow: inset 0 0px 0 0 #32db64;
+  }
+  .validation-message{
+    color: red;
+    font-size: 12px;
+    padding: 10px;
+  }
+}

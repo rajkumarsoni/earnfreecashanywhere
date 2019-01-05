@@ -10,21 +10,21 @@ export class FirestoreDbProvider {
     console.log('Hello FirestoreDbProvider Provider');
   }
 
-  claimMoney(claimedBalance, uid, isClaimedTime, isSpin, isWatchVideo):any{
+  claimMoney(claimedBalance, uid, isClaimedTime, isSpin, isWatchVideo): any {
     let a,
       claimedTimeInUTC = new Date();
     let claimedTime = isClaimedTime ? claimedTimeInUTC.getTime() + (5 * 60 * 1000) : claimedTimeInUTC.getTime();
     let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (12 * 60 * 1000) : claimedTimeInUTC.getTime();
-    let watchVideo = isWatchVideo ? claimedTimeInUTC.getTime() + (120 * 60 * 1000) : claimedTimeInUTC.getTime();
-  //  this.afAuth.authState.subscribe(auth => {
-    return  this.firestore.doc(`totalBalance/${uid}`).set({
-        claimedBalance: claimedBalance,
-        currentTime: claimedTimeInUTC.getTime(),
-        claimedTime: claimedTime,
-        spinWheelTime: spinClaimedTime,
-        watchVideo: watchVideo
-      })
-     // return a;
+    let watchVideo = isWatchVideo ? claimedTimeInUTC.getTime() + (60 * 60 * 1000) : claimedTimeInUTC.getTime();
+    //  this.afAuth.authState.subscribe(auth => {
+    return this.firestore.doc(`totalBalance/${uid}`).set({
+      claimedBalance: claimedBalance,
+      currentTime: claimedTimeInUTC.getTime(),
+      claimedTime: claimedTime,
+      spinWheelTime: spinClaimedTime,
+      watchVideo: watchVideo
+    })
+    // return a;
     // })
 
   }
@@ -35,22 +35,46 @@ export class FirestoreDbProvider {
 
   }
 
-  updateBalance(claimedBalance, uid, isSpin, isClaimedTime, isWatchVideo):any {
+  updateBalance(claimedBalance, uid, isSpin, isClaimedTime, isWatchVideo): any {
     let claimedTimeInUTC = new Date();
     let claimedTime = isClaimedTime ? claimedTimeInUTC.getTime() + (5 * 60 * 1000) : claimedTimeInUTC.getTime();
-    let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (20 * 60 * 1000) : claimedTimeInUTC.getTime();
-    let watchVideo = isWatchVideo ? claimedTimeInUTC.getTime() + (120 * 60 * 1000) : claimedTimeInUTC.getTime();
+    let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (12 * 60 * 1000) : claimedTimeInUTC.getTime();
+    let watchVideo = isWatchVideo ? claimedTimeInUTC.getTime() + (60 * 60 * 1000) : claimedTimeInUTC.getTime();
 
-    return this.firestore.doc(`totalBalance/${uid}`).update({
+    if (isSpin) {
+      return this.firestore.doc(`totalBalance/${uid}`).update({
+
+        claimedBalance: claimedBalance,
+        // claimedTime: claimedTime,
+        spinWheelTime: spinClaimedTime,
+        //watchVideo: watchVideo
+      })
+    } else if (isClaimedTime) {
+      return this.firestore.doc(`totalBalance/${uid}`).update({
 
         claimedBalance: claimedBalance,
         claimedTime: claimedTime,
-        spinWheelTime: spinClaimedTime,
+        //spinWheelTime: spinClaimedTime,
+        //watchVideo: watchVideo
+      })
+    } else if (isWatchVideo) {
+      return this.firestore.doc(`totalBalance/${uid}`).update({
+
+        claimedBalance: claimedBalance,
+        //claimedTime: claimedTime,
+        //spinWheelTime: spinClaimedTime,
         watchVideo: watchVideo
       })
+    } else {
+      return this.firestore.doc(`totalBalance/${uid}`).update({
 
+        claimedBalance: claimedBalance,
+        //claimedTime: claimedTime,
+        //spinWheelTime: spinClaimedTime,
+        //watchVideo: watchVideo
+      })
 
-
+  }
   }
 
   updateCurrentTime(currentTime) {
@@ -63,9 +87,9 @@ export class FirestoreDbProvider {
     return a;
   }
 
-  addWithdrawRequest(amount, walletAddress){
+  addWithdrawRequest(amount, walletAddress) {
     let currentTime = new Date();
-    this.afAuth.authState.subscribe(auth =>{
+    this.afAuth.authState.subscribe(auth => {
       this.firestore.collection(`${auth.uid}`).add({
         amount: amount,
         walletAddress: walletAddress,
@@ -75,14 +99,29 @@ export class FirestoreDbProvider {
 
   }
 
-  addPhoneNumber(phoneNumber, uid){
-   return this.firestore.doc(`phoneNumber/${uid}`).set({
+  addPhoneNumber(phoneNumber, uid) {
+    return this.firestore.doc(`phoneNumber/${uid}`).set({
       phoneNumber: phoneNumber
     })
   }
 
-  getPhoneNumber(uid){
+  addContactUsMessage(message, uid) {
+    let currentTime = new Date();
+    // this.afAuth.authState.subscribe(auth =>{
+    return this.firestore.collection(`${uid}`).add({
+      message: message,
+      requestedDate: currentTime.getTime(),
+      status: 'pending',
+      answer: 'We will respond within 24 hours.'
+    })
+    //})
+  }
+
+  getPhoneNumber(uid) {
     this.firestore.doc(`phoneNumber/${uid}`).valueChanges();
+  }
+  getContactUsMessage(uid) {
+    this.firestore.doc(`contactUs/${uid}`).valueChanges();
   }
 
 }

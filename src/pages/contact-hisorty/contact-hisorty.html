@@ -1,0 +1,34 @@
+
+<ion-header>
+
+  <ion-navbar   color="secondary">
+    <ion-title>Contact History</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div  *ngIf="contactHistoryDetails">
+        <ion-card class="transactions"  *ngFor="let contactHistory of contactHistoryDetails">
+            <ion-card-content>
+              <ion-row>
+                <ion-col col-4 class="head" text-left>Query:</ion-col>
+                <ion-col col-8 class="value" text-right> {{contactHistory.message}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-4 class="head" text-left>Date of Request:</ion-col>
+                <ion-col col-8 class="value" text-right> {{ contactHistory.requestedDate| date }}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-4 class="head" text-left>Status:</ion-col>
+                <ion-col col-8 class="value" text-right> {{contactHistory.status}}</ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col col-4 class="head" text-left>Answer:</ion-col>
+                  <ion-col col-8 class="value" text-right> {{contactHistory.answer }}</ion-col>
+                </ion-row>
+            </ion-card-content>
+          </ion-card>
+    </div>
+</ion-content>

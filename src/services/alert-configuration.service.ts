@@ -25,6 +25,15 @@ export class AlertConfigurationService{
     alert.present();
   }
 
+  getContactUsAlertConfig(){
+    let alert =  this.alrtCtrl.create({
+      title: 'Query',
+      message: `Your query is submitted successfully and we will revert back in 24 hrs through your registerd email address.`,
+      buttons: ['ok']
+    });
+    alert.present();
+  }
+
   getSuccessfullPaymentsPopup(){
     let alert =  this.alrtCtrl.create({
       title: 'Requested Successfully',
