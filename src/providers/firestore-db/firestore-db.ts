@@ -10,17 +10,19 @@ export class FirestoreDbProvider {
     console.log('Hello FirestoreDbProvider Provider');
   }
 
-  claimMoney(claimedBalance, uid, isClaimedTime, isSpin):any{
+  claimMoney(claimedBalance, uid, isClaimedTime, isSpin, isWatchVideo):any{
     let a,
       claimedTimeInUTC = new Date();
     let claimedTime = isClaimedTime ? claimedTimeInUTC.getTime() + (5 * 60 * 1000) : claimedTimeInUTC.getTime();
-    let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (10 * 60 * 1000) : claimedTimeInUTC.getTime();
+    let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (12 * 60 * 1000) : claimedTimeInUTC.getTime();
+    let watchVideo = isWatchVideo ? claimedTimeInUTC.getTime() + (120 * 60 * 1000) : claimedTimeInUTC.getTime();
   //  this.afAuth.authState.subscribe(auth => {
     return  this.firestore.doc(`totalBalance/${uid}`).set({
         claimedBalance: claimedBalance,
         currentTime: claimedTimeInUTC.getTime(),
         claimedTime: claimedTime,
-        spinWheelTime: spinClaimedTime
+        spinWheelTime: spinClaimedTime,
+        watchVideo: watchVideo
       })
      // return a;
     // })
@@ -33,16 +35,18 @@ export class FirestoreDbProvider {
 
   }
 
-  updateBalance(claimedBalance, uid, isSpin, isClaimedTime):any {
+  updateBalance(claimedBalance, uid, isSpin, isClaimedTime, isWatchVideo):any {
     let claimedTimeInUTC = new Date();
     let claimedTime = isClaimedTime ? claimedTimeInUTC.getTime() + (5 * 60 * 1000) : claimedTimeInUTC.getTime();
-    let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (10 * 60 * 1000) : claimedTimeInUTC.getTime();
+    let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (20 * 60 * 1000) : claimedTimeInUTC.getTime();
+    let watchVideo = isWatchVideo ? claimedTimeInUTC.getTime() + (120 * 60 * 1000) : claimedTimeInUTC.getTime();
 
     return this.firestore.doc(`totalBalance/${uid}`).update({
 
         claimedBalance: claimedBalance,
         claimedTime: claimedTime,
-        spinWheelTime: spinClaimedTime
+        spinWheelTime: spinClaimedTime,
+        watchVideo: watchVideo
       })
 
 
@@ -72,7 +76,7 @@ export class FirestoreDbProvider {
   }
 
   addPhoneNumber(phoneNumber, uid){
-    this.firestore.doc(`phoneNumber/${uid}`).set({
+   return this.firestore.doc(`phoneNumber/${uid}`).set({
       phoneNumber: phoneNumber
     })
   }

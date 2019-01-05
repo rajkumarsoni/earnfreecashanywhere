@@ -1,0 +1,32 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Watch Video</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid class="content-header points">
+        <ion-row>
+          <ion-col col-7>
+            <span>Total Points Earned </span>
+          </ion-col>
+          <ion-col col-5 text-right>
+            <span *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance">{{userBalanceDetails.claimedBalance}}</span>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    <p class="timer" *ngIf="userBalanceDetails && (userBalanceDetails.claimedTime >  userBalanceDetails.currentTime); else claimNow">{{(userBalanceDetails.watchVideo - userBalanceDetails.currentTime) + (30*60*1000)  | date:'hh:mm:ss'}}</p>
+    <ng-template #claimNow>
+      <p class="timer">Watch Now</p>
+    </ng-template>
+    <button ion-button full (click)="claimMoney()" *ngIf="!userBalanceDetails" color="secondary" class="buttons" [disabled]="userBalanceDetails?.watchVideo >  userBalanceDetails?.currentTime">
+      Watch Video to earn money
+    </button>
+    <button ion-button full (click)="updateMoney()" *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance" color="secondary" class="buttons" [disabled]="userBalanceDetails.watchVideo >  userBalanceDetails.currentTime">
+      Watch Video to earn money
+    </button>
+</ion-content>

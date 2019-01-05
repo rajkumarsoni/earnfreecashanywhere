@@ -54,26 +54,27 @@
         <ion-icon name="ios-cash-outline" ></ion-icon><br />
         <span>Transaction History</span>
       </ion-col>
-      <ion-col col-5>
+      <ion-col col-5 (click)="goToWatchVideoSection()">
           <ion-icon name="ios-videocam-outline"></ion-icon><br />
           <span>Watch Video to earn more</span>
         </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-5 (click)="goToMyAccounts()">
+      <!-- <ion-col col-5 (click)="goToMyAccounts()">
         <ion-icon name="ios-person-outline"></ion-icon><br />
         <span>My Account</span>
-      </ion-col>
+      </ion-col> -->
       <ion-col col-5>
         <ion-icon name="ios-call-outline"></ion-icon><br />
         <span>Contact Us</span>
       </ion-col>
+      <ion-col col-5 (click)="goToHelpPage()">
+          <ion-icon name="ios-help-circle-outline"></ion-icon><br />
+          <span>Help</span>
+        </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-5>
-        <ion-icon name="ios-help-circle-outline"></ion-icon><br />
-        <span>Help</span>
-      </ion-col>
+
 
     </ion-row>
 

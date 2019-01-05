@@ -16,6 +16,15 @@ export class AlertConfigurationService{
     alert.present();
   }
 
+  getPhoneNumberAlertConfig(){
+    let alert =  this.alrtCtrl.create({
+      title: 'Phone Number',
+      message: `Your phone number added successfully.`,
+      buttons: ['ok']
+    });
+    alert.present();
+  }
+
   getSuccessfullPaymentsPopup(){
     let alert =  this.alrtCtrl.create({
       title: 'Requested Successfully',

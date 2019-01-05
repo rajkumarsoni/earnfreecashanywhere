@@ -1,24 +1,27 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, AlertController, NavController, Button } from 'ionic-angular';
-import { AngularFireAuth } from '../../../node_modules/angularfire2/auth';
-import firebase from 'firebase';
-import { TotalBalance } from '../../interface/total-Balance.modal';
-import { CurrentTime, ServerTime } from '../../interface/timings.interface';
-import { FirestoreDbProvider } from '../../providers/firestore-db/firestore-db';
-import { Observable, of } from 'rxjs';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Subscription } from 'rxjs';
-import { timer } from 'rxjs/observable/timer';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { AlertConfigurationService } from '../../services/alert-configuration.service';
+import { FirestoreDbProvider } from '../../providers/firestore-db/firestore-db';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { timer } from 'rxjs/observable/timer';
+
+/**
+ * Generated class for the WatchVideoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage({
-  name: 'claim-money'
+  name: 'watch-video'
 })
 @Component({
-  selector: 'page-claim',
-  templateUrl: 'claim-money.html',
+  selector: 'page-watch-video',
+  templateUrl: 'watch-video.html',
 })
-export class ClaimMoneyPage {
+export class WatchVideoPage {
 
   /** This variable is used for storing user balance details. */
   userBalanceDetails: any;
@@ -72,9 +75,9 @@ export class ClaimMoneyPage {
 
   /** This method is used for claim money. */
   claimMoney() {
-    this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
+    this.randomNumber = parseInt((Math.random() * (100 - 10) + 10).toFixed(0));
     this.afAuth.authState.subscribe(auth => {
-    this.firestoreDB.claimMoney(this.randomNumber, auth.uid, true, false, false)
+    this.firestoreDB.claimMoney(this.randomNumber, auth.uid, false, false, true)
       .then(
         () => {
           this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
@@ -89,9 +92,10 @@ export class ClaimMoneyPage {
     this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
     this.userBalanceDetails.claimedBalance += this.randomNumber;
     this.afAuth.authState.subscribe(auth => {
-      this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, false, true, false).then(() => {
+      this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, false, false, true).then(() => {
         this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
       });
     })
   }
+
 }

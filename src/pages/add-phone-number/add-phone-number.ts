@@ -45,7 +45,9 @@ export class AddPhoneNumberPage {
   addPhoneNumber() {
 
       this.afAuth.authState.subscribe(auth => {
-        this.firestoreDB.addPhoneNumber(this.phoneNumber, auth.uid);
+        this.firestoreDB.addPhoneNumber(this.phoneNumber, auth.uid).then(()=>{
+          this.alertConfigService.getPhoneNumberAlertConfig();
+        })
       })
 
 

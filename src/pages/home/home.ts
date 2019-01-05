@@ -73,4 +73,12 @@ export class HomePage {
   goToMyAccounts(){
     this.navCtrl.push('my-account');
   }
+
+  goToHelpPage(){
+    this.navCtrl.push('help-page');
+  }
+
+  goToWatchVideoSection(){
+    this.navCtrl.push('watch-video')
+  }
 }

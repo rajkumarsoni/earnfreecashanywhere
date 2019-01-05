@@ -17,7 +17,7 @@ import { AlertConfigurationService } from '../../services/alert-configuration.se
 })
 export class LuckyWheelPage {
 
-  spinWheelData = [40, 30, 20, 10, 0, 10, 20, 30, 40];
+  spinWheelData = [30, 25, 20, 10, 0, 10, 20, 25, 30];
 
   /** This variable is used for storing user balance details. */
   userBalanceDetails: any;
@@ -69,16 +69,14 @@ export class LuckyWheelPage {
   claimPoints(points) {
     if(!this.userBalanceDetails){
       this.afAuth.authState.subscribe(auth => {
-        this.firestoreDB.claimMoney(points, auth.uid, false, true).then(() => {
+        this.firestoreDB.claimMoney(points, auth.uid, false, true, false).then(() => {
           this.alertConfigService.getClaimedAlertConfig(points);
-
-      alert("inside")
         })
       });
     }else if (this.userBalanceDetails.spinWheelTime < this.userBalanceDetails.currentTime) {
       this.userBalanceDetails.claimedBalance += points;
       this.afAuth.authState.subscribe(auth => {
-        this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, true, false).then(() => {
+        this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, true, false, false).then(() => {
           this.alertConfigService.getClaimedAlertConfig(points);
         })
       });
