@@ -13,6 +13,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class MyAccountPage {
   userProfile: any;
+  phoneNumber:any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public firestore: AngularFirestore,
     private afAuth: AngularFireAuth) {
@@ -28,6 +29,26 @@ export class MyAccountPage {
        this.userProfile = null
      }
      });
+     try {
+      this.afAuth.authState.subscribe(auth => {
+        if (auth && auth.email && auth.uid) {
+          let fetchedData = this.firestore.collection(`phoneNumber`).doc(`${auth.uid}`).valueChanges();
+          fetchedData.subscribe(data => {
+           this.phoneNumber = data;
+
+            //alert(JSON.stringify(data));
+          })
+        }
+      });
+
+    } catch (e) {
+      alert(e);
+    }
+  }
+
+
+  goToUpdatePhoneNumber(){
+    this.navCtrl.push('update-phone-number');
   }
 
 }

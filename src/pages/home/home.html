@@ -11,7 +11,7 @@
   <ion-grid class="content-header">
       <ion-row>
           <ion-col col-12 text-center>
-            <span color="secondary">Welcome back {{userProfile?.displayName}}</span>
+            <span class="name">Welcome back {{userProfile?.displayName}}</span>
           </ion-col>
         </ion-row>
     <ion-row>
@@ -19,7 +19,8 @@
         <ion-icon name="logo-usd"></ion-icon>
       </ion-col>
       <ion-col col-8>
-          <span *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance">{{userBalanceDetails.claimedBalance}}</span>
+        <span *ngIf="!userBalanceDetails">0 Points</span>
+          <span *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance">{{userBalanceDetails.claimedBalance}} Points</span>
       </ion-col>
       <ion-col col-2 text-center>
         <!-- <ion-icon name="ios-arrow-forward-outline"></ion-icon> -->

@@ -18,14 +18,6 @@
         <span *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance">{{userBalanceDetails.claimedBalance}}</span>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-10>
-        <span>Earn More Spin</span>
-    </ion-col>
-    <ion-col col-2 text-center>
-      <ion-icon name="ios-arrow-forward-outline"></ion-icon>
-    </ion-col>
-    </ion-row>
 </ion-grid>
 
   <spin-wheel [spinWheelData]="spinWheelData" (winningNumbers)="claimPoints($event)"></spin-wheel>

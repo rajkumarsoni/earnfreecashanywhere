@@ -71,4 +71,14 @@ export class FirestoreDbProvider {
 
   }
 
+  addPhoneNumber(phoneNumber, uid){
+    this.firestore.doc(`phoneNumber/${uid}`).set({
+      phoneNumber: phoneNumber
+    })
+  }
+
+  getPhoneNumber(uid){
+    this.firestore.doc(`phoneNumber/${uid}`).valueChanges();
+  }
+
 }

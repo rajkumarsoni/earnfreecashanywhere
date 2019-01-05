@@ -7,7 +7,8 @@
 </ion-header>
 
 
-<ion-content padding *ngIf="userProfile">
+<ion-content padding >
+  <div *ngIf="userProfile">
   <div text-center>
   <ion-img height="100" width="100" [src]="userProfile?.photoURL"></ion-img>
 </div>
@@ -22,8 +23,10 @@
     </ion-row>
     <ion-row>
       <ion-col col-3 class="field" text-left>Phone Number:</ion-col>
-      <ion-col col-9 class="value" >8269070073</ion-col>
+      <ion-col col-9 class="value" *ngIf="phoneNumber" >{{ phoneNumber?.phoneNumber}}</ion-col>
+      <ion-col col-9 class="value" *ngIf="!phoneNumber" >Please add your mobile number in order to get payment.</ion-col>
     </ion-row>
   </ion-grid>
-  <button ion-button  round outline>Add or Update your Phone Number</button>
+</div>
+  <button ion-button  round outline (click)="goToUpdatePhoneNumber()">Add or Update your Phone Number</button>
 </ion-content>

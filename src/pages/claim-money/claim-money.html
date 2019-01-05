@@ -23,7 +23,7 @@
 	<ng-template #claimNow>
 		<p class="timer">Claim Now</p>
 	</ng-template>
-	<button ion-button (click)="claimMoney()" *ngIf="!userBalanceDetails" color="secondary" class="buttons" [disabled]="userBalanceDetails?.claimedTime >  userBalanceDetails?.currentTime">
+	<button ion-button full (click)="claimMoney()" *ngIf="!userBalanceDetails" color="secondary" class="buttons" [disabled]="userBalanceDetails?.claimedTime >  userBalanceDetails?.currentTime">
 		Click here to claim money
   </button>
   <button ion-button full (click)="updateMoney()" *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance" color="secondary" class="buttons" [disabled]="userBalanceDetails.claimedTime >  userBalanceDetails.currentTime">

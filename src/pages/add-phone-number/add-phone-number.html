@@ -1,0 +1,26 @@
+
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Phone Number</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (submit)="addPhoneNumber()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Enter your phone number</ion-label>
+        <ion-input type="number" [(ngModel)]="phoneNumber" name="phoneNumber"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="secondary" block>Add Phone Number</button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>

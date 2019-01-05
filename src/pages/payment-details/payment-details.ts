@@ -22,7 +22,7 @@ export class PaymentDetailsPage {
     this.selectedAccount = this.navParams.data;
     console.log("Points", this.selectedAccount);
   }
-
+phoneNumber: any;
   ionViewDidLoad() {
     try {
       this.afAuth.authState.subscribe(auth => {
@@ -30,9 +30,16 @@ export class PaymentDetailsPage {
           let fetchedData = this.firestore.collection(`totalBalance`).doc(`${auth.uid}`).valueChanges();
           fetchedData.subscribe(data => {
             this.userBalanceDetails = data;
+          });
+          let fetchedPhoneNumberData = this.firestore.collection(`phoneNumber`).doc(`${auth.uid}`).valueChanges();
+          fetchedPhoneNumberData.subscribe(data => {
+           this.phoneNumber = data;
+
+            //alert(JSON.stringify(data));
           })
         }
-      });
+        }
+      );
 
     } catch (e) {
       alert(e);
@@ -41,10 +48,12 @@ export class PaymentDetailsPage {
   }
 
   requestPayments(amount) {
+
     if (this.userBalanceDetails.claimedBalance >= amount) {
       this.alertConfigService.getSuccessfullPaymentsPopup();
       this.afAuth.authState.subscribe(auth => {
-        this.firestoreDB.addWithdrawRequest(amount, 8269070073);
+        let wallet = (this.selectedAccount.wallet == "paypal") ? auth.email : this.phoneNumber.phoneNumber;
+        this.firestoreDB.addWithdrawRequest(amount, wallet);
         this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance - amount, auth.uid, false, false);
       })
     } else {

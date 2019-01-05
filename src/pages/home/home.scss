@@ -17,6 +17,7 @@ page-home {
             }
         }
     }
+
     ion-list {
         ion-item {
             background-color: #fcfcfc;
@@ -46,5 +47,8 @@ page-home {
         flex: 0 0 48%;
         max-width: 48%;
       }
+    }
+    .name{
+      color: #be1f24;
     }
 }
