@@ -9,8 +9,9 @@
 
 
 <ion-content padding>
-    <div  *ngIf="contactHistoryDetails">
-        <ion-card class="transactions"  *ngFor="let contactHistory of contactHistoryDetails">
+    <div *ngIf="contactHistoryDetails">
+      <div *ngFor="let contactHistory of contactHistoryDetails">
+        <ion-card class="transactions"  *ngIf="contactHistory.message">
             <ion-card-content>
               <ion-row>
                 <ion-col col-4 class="head" text-left>Query:</ion-col>
@@ -31,4 +32,5 @@
             </ion-card-content>
           </ion-card>
     </div>
+  </div>
 </ion-content>

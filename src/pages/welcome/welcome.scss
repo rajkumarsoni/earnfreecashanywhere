@@ -43,5 +43,14 @@ page-welcome {
       background-color: rgb(220, 220, 220);
     }
   }
-
+  ion-footer{
+    background-color: #be1f24;
+    span{
+      display: block;
+      color: white;
+      font-size: 12px;
+      text-align: right;
+      padding: 10px;
+    }
+  }
 }

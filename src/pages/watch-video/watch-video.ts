@@ -7,6 +7,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { timer } from 'rxjs/observable/timer';
 import { LoadingCongigurationService } from '../../services/loading-configuration.service';
+import { AdMobFreeInterstitialConfig, AdMobFree } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the WatchVideoPage page.
@@ -40,11 +41,13 @@ export class WatchVideoPage {
     private loadingService: LoadingCongigurationService,
     public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
-    public firestore: AngularFirestore, private afAuth: AngularFireAuth
+    public firestore: AngularFirestore, private afAuth: AngularFireAuth,
+    private adMobFree: AdMobFree
   ) { }
 
   /** Ionic lifecycle hook. */
   ionViewDidLoad() {
+    this.interstitialAdConfig();
     try {
       this.afAuth.authState.subscribe(auth => {
         if (auth && auth.email && auth.uid) {
@@ -103,5 +106,13 @@ export class WatchVideoPage {
       });
     })
   }
-
+  interstitialAdConfig(){
+    const interAd: AdMobFreeInterstitialConfig = {
+      isTesting: true,
+      autoShow: true,
+      id: 'ca-app-pub-8075364575456646/6299548807'
+      // id: need to add
+    }
+    this.adMobFree.interstitial.config(interAd);
+  }
 }

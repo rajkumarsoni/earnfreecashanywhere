@@ -12,17 +12,16 @@
         <ion-list>
 
           <ion-item>
-            <ion-label placeholder>Enter your query here</ion-label>
-            <ion-textarea  type="text" [(ngModel)]="message" name="message"></ion-textarea>
+            <ion-textarea placeholder="Enter your query here" type="text" [(ngModel)]="message" name="message"></ion-textarea>
           </ion-item>
 
           <div padding>
-            <button ion-button color="secondary" block>Submit Query</button>
+            <button ion-button color="secondary" outline round full block>Submit Query</button>
           </div>
 
         </ion-list>
       </form>
       <div padding>
-          <button ion-button color="secondary" block (click)="goToContactHistory()">Contact History</button>
+          <button ion-button color="secondary" outline round full (click)="goToContactHistory()">Contact History</button>
         </div>
 </ion-content>

@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
 import { MainPage } from '..';
+import { AppVersion } from '@ionic-native/app-version';
 
 /**
  * The Welcome Page is a splash page that quickly describes the app,
@@ -20,11 +21,16 @@ import { MainPage } from '..';
   templateUrl: 'welcome.html'
 })
 export class WelcomePage {
+  versionNumber: any;
   users: Observable<firebase.User>
   constructor(public navCtrl: NavController,
     private googlePlus: GooglePlus,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private appVersion: AppVersion) {
       this.users = this.afAuth.authState;
+      this.appVersion.getVersionNumber().then((version)=>{
+        this.versionNumber = version
+      })
      }
 
   async doLogin() {

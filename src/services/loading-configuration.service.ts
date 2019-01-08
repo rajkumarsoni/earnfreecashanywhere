@@ -8,7 +8,9 @@ export class LoadingCongigurationService {
   presentLoadingDefault(isShow) {
     let loading = this.loadingCtrl.create({
       spinner: 'hide',
-      content: `<div class="lds-hourglass"></div>`
+      dismissOnPageChange:true,
+      content: `<div class="lds-hourglass"></div>`,
+      duration: 5000
     });
 
     if (isShow) {

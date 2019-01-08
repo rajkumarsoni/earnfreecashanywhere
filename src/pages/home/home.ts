@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Thumbnail } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirestoreDbProvider } from '../../providers/firestore-db/firestore-db';
 import { LoadingCongigurationService } from '../../services/loading-configuration.service';
+import { AppRate } from '@ionic-native/app-rate';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 @IonicPage({
   name: 'home-page'
@@ -18,7 +20,37 @@ export class HomePage {
 
   userProfile: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private firestoreDB: FirestoreDbProvider,
-    public firestore: AngularFirestore, private afAuth: AngularFireAuth, public loadingService: LoadingCongigurationService) {
+    public firestore: AngularFirestore,private admobFree: AdMobFree,private appRate: AppRate, private afAuth: AngularFireAuth, public loadingService: LoadingCongigurationService) {
+      this.bannerAddConfig();
+  }
+
+  rateApp(){
+    this.appRate.preferences = {
+      displayAppName: 'Earn Free Cash',
+      promptAgainForEachNewVersion: true,
+      storeAppURL: {
+        android: 'market://details?id=io.ionic.getFreeRipple'
+      },
+      customLocale:{
+        title: 'enjoying %@',
+        message:' like this app youPlease rate us and earn 1000 Points.',
+        cancelButtonLabel: 'No, Thanks',
+        laterButtonLabel: 'Remind Me Later',
+        rateButtonLabel: 'Rate Noe'
+      },
+      callbacks:{
+        onRateDialogShow: (rate)=>{
+         // alert("details?id=io.ionic.getFreeRipple")
+        },
+        onButtonClicked: (buttonIndex)=>{
+          //alert(buttonIndex);
+        },
+        handleNegativeFeedback: (a)=>{
+         // alert(`${a}xsss`)
+        }
+      }
+    }
+    this.appRate.promptForRating(true);
   }
 
   /** Ionic lifecycle hook. */
@@ -94,6 +126,15 @@ export class HomePage {
   goToWatchVideoSection(){
     this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('watch-video')
+  }
+
+  bannerAddConfig(){
+    const bannerAdd: AdMobFreeBannerConfig = {
+      isTesting: true,
+      autoShow: true,
+      id: "ca-app-pub-8075364575456646/1072585933"
+    };
+    this.admobFree.banner.config(bannerAdd);
   }
 
 }

@@ -8,6 +8,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AlertConfigurationService } from '../../services/alert-configuration.service';
 import { LoadingCongigurationService } from '../../services/loading-configuration.service';
+import { AdMobFreeInterstitialConfig, AdMobFree } from '@ionic-native/admob-free';
 
 @IonicPage({
   name: 'luckyWheel'
@@ -33,10 +34,12 @@ export class LuckyWheelPage {
     private loadingService: LoadingCongigurationService,
     public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
-    public firestore: AngularFirestore, private afAuth: AngularFireAuth) {
+    public firestore: AngularFirestore, private afAuth: AngularFireAuth,
+    private adMobFree: AdMobFree) {
   }
 
   ionViewDidLoad() {
+    this.interstitialAdConfig();
     try {
       this.afAuth.authState.subscribe(auth => {
         if (auth && auth.email && auth.uid) {
@@ -99,5 +102,15 @@ export class LuckyWheelPage {
       message: `Please comeback after ${min} minute and ${(sec < 10) ? '0' : ''}${sec} second to earn points.`,
       buttons: ['ok']
     }).present();
+  }
+
+  interstitialAdConfig(){
+    const interAd: AdMobFreeInterstitialConfig = {
+      isTesting: true,
+      autoShow: true,
+      id: 'ca-app-pub-8075364575456646/6299548807'
+      // id: need to add
+    }
+    this.adMobFree.interstitial.config(interAd);
   }
 }

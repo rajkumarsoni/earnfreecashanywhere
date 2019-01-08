@@ -11,6 +11,7 @@ import { timer } from 'rxjs/observable/timer';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AlertConfigurationService } from '../../services/alert-configuration.service';
 import { LoadingCongigurationService } from '../../services/loading-configuration.service';
+import { AdMobFreeBannerConfig, AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 @IonicPage({
   name: 'claim-money'
@@ -36,12 +37,16 @@ export class ClaimMoneyPage {
     private alertConfigService: AlertConfigurationService,
     public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
-    public firestore: AngularFirestore, private afAuth: AngularFireAuth
-  ) { }
+    public firestore: AngularFirestore, private afAuth: AngularFireAuth,
+    private loadingCtrl: LoadingController,
+    private admobFree: AdMobFree
+  ) {
+    this.bannerAddConfig();
+   }
 
   /** Ionic lifecycle hook. */
   ionViewDidLoad() {
-
+    this.interstitialAdConfig();
     try {
       this.afAuth.authState.subscribe(auth => {
         if (auth && auth.email && auth.uid) {
@@ -97,5 +102,40 @@ export class ClaimMoneyPage {
         this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
       });
     })
+  }
+
+  presentLoadingDefault(isShow) {
+    let loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      dismissOnPageChange:true,
+      content: `<div class="lds-hourglass"></div>`
+    });
+
+    if (isShow) {
+      loading.present();
+    }
+    if (!isShow) {
+      loading.dismiss();
+
+
+    }
+  }
+
+  bannerAddConfig(){
+    const bannerAdd: AdMobFreeBannerConfig = {
+      isTesting: true,
+      autoShow: true,
+      id: "ca-app-pub-8075364575456646/5652681549"
+    };
+    this.admobFree.banner.config(bannerAdd);
+  }
+
+  interstitialAdConfig(){
+    const interAd: AdMobFreeInterstitialConfig = {
+      isTesting: true,
+      autoShow: true,
+      id: 'ca-app-pub-8075364575456646/6299548807'
+    }
+    this.admobFree.interstitial.config(interAd);
   }
 }

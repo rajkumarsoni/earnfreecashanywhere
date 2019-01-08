@@ -11,6 +11,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AngularFireModule } from 'angularfire2';
 import { GooglePlus } from '../../node_modules/@ionic-native/google-plus';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
@@ -23,6 +24,9 @@ import { FirestoreDbProvider } from '../providers/firestore-db/firestore-db';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AlertConfigurationService } from '../services/alert-configuration.service';
 import { LoadingCongigurationService } from '../services/loading-configuration.service';
+import {AppRate} from '@ionic-native/app-rate';
+import { AppVersion } from '@ionic-native/app-version';
+
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -84,7 +88,10 @@ export function provideSettings(storage: Storage) {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     FirestoreDbProvider,
     AlertConfigurationService,
-    LoadingCongigurationService
+    LoadingCongigurationService,
+    AppRate,
+    AppVersion,
+    AdMobFree
   ]
 })
 export class AppModule { }

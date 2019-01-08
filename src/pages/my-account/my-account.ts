@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoadingCongigurationService } from '../../services/loading-configuration.service';
+import { AdMobFreeInterstitialConfig, AdMobFree } from '@ionic-native/admob-free';
 
 
 @IonicPage({
@@ -18,10 +19,13 @@ export class MyAccountPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public firestore: AngularFirestore,
     private loadingService: LoadingCongigurationService,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private adMobFree: AdMobFree
+    ) {
   }
 
   ionViewDidLoad() {
+    this.interstitialAdConfig();
     this.afAuth.auth.onAuthStateChanged(user=>{
       if(user){
        this.userProfile = user;
@@ -54,5 +58,13 @@ export class MyAccountPage {
     this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('update-phone-number');
   }
-
+  interstitialAdConfig(){
+    const interAd: AdMobFreeInterstitialConfig = {
+      isTesting: true,
+      autoShow: true,
+      id: 'ca-app-pub-8075364575456646/6299548807'
+      // id: need to add
+    }
+    this.adMobFree.interstitial.config(interAd);
+  }
 }
