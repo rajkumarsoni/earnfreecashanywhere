@@ -4,6 +4,7 @@ import { FirestoreDbProvider } from '../../providers/firestore-db/firestore-db';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AlertConfigurationService } from '../../services/alert-configuration.service';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 @IonicPage({
   name: 'withdraw-page'
@@ -15,7 +16,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 export class WithdrawPage {
   userProfile: any;
   phoneNumber: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController,
+    private loadingService: LoadingCongigurationService, public navParams: NavParams,
     private firestoreDB: FirestoreDbProvider,
     public firestore: AngularFirestore,
     private afAuth: AngularFireAuth,  private alertConfigService: AlertConfigurationService,) {
@@ -46,9 +48,11 @@ export class WithdrawPage {
     } catch (e) {
       alert(e);
     }
+    this.loadingService.presentLoadingDefault(false);
   }
 
   paymentDetail(points: number, walletType: string, money: string){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('payments-details', {amount: points, wallet: walletType, money: money});
   }
 

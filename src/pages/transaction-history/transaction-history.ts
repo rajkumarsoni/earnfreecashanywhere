@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 
 @IonicPage({
@@ -15,7 +16,8 @@ export class TransactionHistoryPage {
 
 withdrawRequestDetails:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController,
+    private loadingService: LoadingCongigurationService, public navParams: NavParams,
     public firestore: AngularFirestore, private afAuth: AngularFireAuth, private alrtCtrl: AlertController) {
   }
 
@@ -38,7 +40,7 @@ withdrawRequestDetails:any;
     } catch (e) {
       alert(e);
     }
-
+    this.loadingService.presentLoadingDefault(false);
 
 
 

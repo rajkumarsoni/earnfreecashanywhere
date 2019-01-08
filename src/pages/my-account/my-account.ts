@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 
 @IonicPage({
@@ -16,6 +17,7 @@ export class MyAccountPage {
   phoneNumber:any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public firestore: AngularFirestore,
+    private loadingService: LoadingCongigurationService,
     private afAuth: AngularFireAuth) {
   }
 
@@ -44,10 +46,12 @@ export class MyAccountPage {
     } catch (e) {
       alert(e);
     }
+    this.loadingService.presentLoadingDefault(false);
   }
 
 
   goToUpdatePhoneNumber(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('update-phone-number');
   }
 

@@ -4,6 +4,7 @@ import { AlertConfigurationService } from '../../services/alert-configuration.se
 import { FirestoreDbProvider } from '../../providers/firestore-db/firestore-db';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 @IonicPage({
   name: 'payments-details'
@@ -18,7 +19,8 @@ export class PaymentDetailsPage {
   selectedAccount: any;
   constructor(public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
-    public firestore: AngularFirestore, private afAuth: AngularFireAuth, public navParams: NavParams, private alertConfigService: AlertConfigurationService, ) {
+    public firestore: AngularFirestore,
+    private loadingService: LoadingCongigurationService, private afAuth: AngularFireAuth, public navParams: NavParams, private alertConfigService: AlertConfigurationService, ) {
     this.selectedAccount = this.navParams.data;
     console.log("Points", this.selectedAccount);
   }
@@ -44,12 +46,13 @@ phoneNumber: any;
     } catch (e) {
       alert(e);
     }
-
+    this.loadingService.presentLoadingDefault(false);
   }
 
   requestPayments(amount) {
-
+    this.loadingService.presentLoadingDefault(true);
     if (this.userBalanceDetails.claimedBalance >= amount) {
+    this.loadingService.presentLoadingDefault(false);
       this.alertConfigService.getSuccessfullPaymentsPopup();
       this.afAuth.authState.subscribe(auth => {
         let wallet = (this.selectedAccount.wallet == "paypal") ? auth.email : this.phoneNumber.phoneNumber;
@@ -57,6 +60,7 @@ phoneNumber: any;
         this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance - amount, auth.uid, false, false, false);
       })
     } else {
+      this.loadingService.presentLoadingDefault(false);
       this.alertConfigService.getUnSuccessfullPaymentsPopup();
     }
   }

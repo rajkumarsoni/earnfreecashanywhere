@@ -7,6 +7,7 @@ import { timer } from 'rxjs/observable/timer';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AlertConfigurationService } from '../../services/alert-configuration.service';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 @IonicPage({
   name: 'luckyWheel'
@@ -29,6 +30,7 @@ export class LuckyWheelPage {
     public loadingCtrl: LoadingController,
     private alertConfigService: AlertConfigurationService,
     private alrtCtrl: AlertController,
+    private loadingService: LoadingCongigurationService,
     public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
     public firestore: AngularFirestore, private afAuth: AngularFireAuth) {
@@ -47,6 +49,7 @@ export class LuckyWheelPage {
     } catch (e) {
       alert(e);
     }
+    this.loadingService.presentLoadingDefault(false);
   }
 
   /** Angular lifecycle hook */

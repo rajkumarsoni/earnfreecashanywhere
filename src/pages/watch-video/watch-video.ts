@@ -6,6 +6,7 @@ import { FirestoreDbProvider } from '../../providers/firestore-db/firestore-db';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { timer } from 'rxjs/observable/timer';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 /**
  * Generated class for the WatchVideoPage page.
@@ -36,6 +37,7 @@ export class WatchVideoPage {
   constructor(
     public loadingCtrl: LoadingController,
     private alertConfigService: AlertConfigurationService,
+    private loadingService: LoadingCongigurationService,
     public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
     public firestore: AngularFirestore, private afAuth: AngularFireAuth
@@ -56,7 +58,7 @@ export class WatchVideoPage {
     } catch (e) {
       alert(e);
     }
-
+    this.loadingService.presentLoadingDefault(false);
   }
 
   /** Angular lifecycle hook */
@@ -75,11 +77,13 @@ export class WatchVideoPage {
 
   /** This method is used for claim money. */
   claimMoney() {
+    this.loadingService.presentLoadingDefault(true);
     this.randomNumber = parseInt((Math.random() * (100 - 10) + 10).toFixed(0));
     this.afAuth.authState.subscribe(auth => {
     this.firestoreDB.claimMoney(this.randomNumber, auth.uid, false, false, true)
       .then(
         () => {
+          this.loadingService.presentLoadingDefault(false);
           this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
         }
       )
@@ -89,10 +93,12 @@ export class WatchVideoPage {
 
   /** This variable is used for update money */
   updateMoney() {
+    this.loadingService.presentLoadingDefault(true);
     this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
     this.userBalanceDetails.claimedBalance += this.randomNumber;
     this.afAuth.authState.subscribe(auth => {
       this.firestoreDB.updateBalance(this.userBalanceDetails.claimedBalance, auth.uid, false, false, true).then(() => {
+        this.loadingService.presentLoadingDefault(false);
         this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
       });
     })

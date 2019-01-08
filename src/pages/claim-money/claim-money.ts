@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { timer } from 'rxjs/observable/timer';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AlertConfigurationService } from '../../services/alert-configuration.service';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 @IonicPage({
   name: 'claim-money'
@@ -31,7 +32,7 @@ export class ClaimMoneyPage {
 
   /** @ignore */
   constructor(
-    public loadingCtrl: LoadingController,
+    public loadingService: LoadingCongigurationService,
     private alertConfigService: AlertConfigurationService,
     public navCtrl: NavController,
     private firestoreDB: FirestoreDbProvider,
@@ -40,6 +41,7 @@ export class ClaimMoneyPage {
 
   /** Ionic lifecycle hook. */
   ionViewDidLoad() {
+
     try {
       this.afAuth.authState.subscribe(auth => {
         if (auth && auth.email && auth.uid) {
@@ -53,7 +55,7 @@ export class ClaimMoneyPage {
     } catch (e) {
       alert(e);
     }
-
+    this.loadingService.presentLoadingDefault(false);
   }
 
   /** Angular lifecycle hook */
@@ -72,11 +74,13 @@ export class ClaimMoneyPage {
 
   /** This method is used for claim money. */
   claimMoney() {
+    this.loadingService.presentLoadingDefault(true);
     this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
     this.afAuth.authState.subscribe(auth => {
     this.firestoreDB.claimMoney(this.randomNumber, auth.uid, true, false, false)
       .then(
         () => {
+          this.loadingService.presentLoadingDefault(false);
           this.alertConfigService.getClaimedAlertConfig(this.randomNumber);
         }
       )

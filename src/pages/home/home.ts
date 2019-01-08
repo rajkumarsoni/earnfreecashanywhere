@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirestoreDbProvider } from '../../providers/firestore-db/firestore-db';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 @IonicPage({
   name: 'home-page'
@@ -17,11 +18,12 @@ export class HomePage {
 
   userProfile: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private firestoreDB: FirestoreDbProvider,
-    public firestore: AngularFirestore, private afAuth: AngularFireAuth) {
+    public firestore: AngularFirestore, private afAuth: AngularFireAuth, public loadingService: LoadingCongigurationService) {
   }
 
   /** Ionic lifecycle hook. */
   ionViewDidLoad() {
+
     try {
       this.afAuth.auth.onAuthStateChanged(user=>{
        if(user){
@@ -55,34 +57,43 @@ export class HomePage {
   }
 
   goToClaim(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('claim-money');
   }
 
   goTOWheel(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('luckyWheel');
   }
 
   goToWithdraw(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('withdraw-page');
   }
 
   goToTransactionHistory(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('transaction-history');
   }
 
   goToMyAccounts(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('my-account');
   }
 
   goToHelpPage(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('help-page');
   }
 
   goToContactUsPage(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('contact-us');
   }
 
   goToWatchVideoSection(){
+    this.loadingService.presentLoadingDefault(true);
     this.navCtrl.push('watch-video')
   }
+
 }

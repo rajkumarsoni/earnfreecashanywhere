@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { LoadingCongigurationService } from '../../services/loading-configuration.service';
 
 /**
  * Generated class for the ContactHisortyPage page.
@@ -23,11 +24,13 @@ export class ContactHisortyPage {
 contactHistoryDetails:any;
 
 constructor(public navCtrl: NavController, public navParams: NavParams,
+  private loadingService: LoadingCongigurationService,
   public firestore: AngularFirestore, private afAuth: AngularFireAuth, private alrtCtrl: AlertController) {
 }
 
 /** Ionic lifecycle hook. */
 ionViewDidLoad() {
+
   try {
     this.afAuth.authState.subscribe(auth => {
       if (auth && auth.email && auth.uid) {
@@ -43,7 +46,7 @@ ionViewDidLoad() {
   } catch (e) {
     alert(e);
   }
-
+this.loadingService.presentLoadingDefault(false);
 
 
 

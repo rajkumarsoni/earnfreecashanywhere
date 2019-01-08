@@ -22,6 +22,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirestoreDbProvider } from '../providers/firestore-db/firestore-db';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AlertConfigurationService } from '../services/alert-configuration.service';
+import { LoadingCongigurationService } from '../services/loading-configuration.service';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -82,7 +83,8 @@ export function provideSettings(storage: Storage) {
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     FirestoreDbProvider,
-    AlertConfigurationService
+    AlertConfigurationService,
+    LoadingCongigurationService
   ]
 })
 export class AppModule { }
