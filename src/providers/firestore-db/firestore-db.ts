@@ -13,7 +13,7 @@ export class FirestoreDbProvider {
   claimMoney(claimedBalance, uid, isClaimedTime, isSpin, isWatchVideo): any {
     let a,
       claimedTimeInUTC = new Date();
-    let claimedTime = isClaimedTime ? claimedTimeInUTC.getTime() + (5 * 60 * 1000) : claimedTimeInUTC.getTime();
+    let claimedTime = isClaimedTime ? claimedTimeInUTC.getTime() + (10 * 60 * 1000) : claimedTimeInUTC.getTime();
     let spinClaimedTime = isSpin ? claimedTimeInUTC.getTime() + (12 * 60 * 1000) : claimedTimeInUTC.getTime();
     let watchVideo = isWatchVideo ? claimedTimeInUTC.getTime() + (60 * 60 * 1000) : claimedTimeInUTC.getTime();
     //  this.afAuth.authState.subscribe(auth => {

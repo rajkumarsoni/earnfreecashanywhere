@@ -65,9 +65,12 @@ export class ContactHisortyPage {
     const interAd: AdMobFreeInterstitialConfig = {
       isTesting: true,
       autoShow: true,
-      id: 'ca-app-pub-8075364575456646/6299548807'
+      id: 'ca-app-pub-8075364575456646/7840302129'
       // id: need to add
     }
     this.adMobFree.interstitial.config(interAd);
+    this.adMobFree.interstitial.prepare().then(()=>{
+      console.log("ad")
+    })
   }
 }

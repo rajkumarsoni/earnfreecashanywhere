@@ -66,5 +66,8 @@ export class MyAccountPage {
       // id: need to add
     }
     this.adMobFree.interstitial.config(interAd);
+    this.adMobFree.interstitial.prepare().then(()=>{
+      console.log("ad")
+    })
   }
 }

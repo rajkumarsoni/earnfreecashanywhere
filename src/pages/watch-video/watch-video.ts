@@ -7,7 +7,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { timer } from 'rxjs/observable/timer';
 import { LoadingCongigurationService } from '../../services/loading-configuration.service';
-import { AdMobFreeInterstitialConfig, AdMobFree } from '@ionic-native/admob-free';
+import { AdMobFreeInterstitialConfig, AdMobFree, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the WatchVideoPage page.
@@ -81,7 +81,7 @@ export class WatchVideoPage {
   /** This method is used for claim money. */
   claimMoney() {
     this.loadingService.presentLoadingDefault(true);
-    this.randomNumber = parseInt((Math.random() * (100 - 10) + 10).toFixed(0));
+    this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
     this.afAuth.authState.subscribe(auth => {
     this.firestoreDB.claimMoney(this.randomNumber, auth.uid, false, false, true)
       .then(
@@ -96,6 +96,7 @@ export class WatchVideoPage {
 
   /** This variable is used for update money */
   updateMoney() {
+    this.watchVideo();
     this.loadingService.presentLoadingDefault(true);
     this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
     this.userBalanceDetails.claimedBalance += this.randomNumber;
@@ -114,5 +115,18 @@ export class WatchVideoPage {
       // id: need to add
     }
     this.adMobFree.interstitial.config(interAd);
+    this.adMobFree.interstitial.prepare().then(()=>{
+      console.log("ad")
+    })
+  }
+
+  watchVideo(){
+    const reward: AdMobFreeRewardVideoConfig = {
+      isTesting: true,
+      autoShow: true,
+      id: 'ca-app-pub-8075364575456646/7056993056'
+    }
+    this.adMobFree.rewardVideo.config(reward);
+    this.adMobFree.rewardVideo.prepare();
   }
 }

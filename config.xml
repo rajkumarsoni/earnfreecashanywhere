@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.earnFreeCashAnywhere" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>earnFreeCashAnywhere</name>
+<widget id="io.ionic.earnFreeCashAnywhere" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>earn Free Cash Anywhere</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
@@ -85,5 +85,8 @@
     <plugin name="cordova-plugin-googleplus" spec="6.0.0">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1025593372255-ne644fmhm1jiapued7hfuvj29mm7igg4" />
     </plugin>
+    <plugin name="cordova-plugin-apprate" spec="1.4.0" />
+    <plugin name="cordova-plugin-app-version" spec="0.1.9" />
+    <plugin name="cordova-plugin-admob-free" spec="0.25.0" />
     <engine name="android" spec="7.1.4" />
 </widget>

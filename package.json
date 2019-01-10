@@ -20,6 +20,9 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/admob-free": "^4.19.0",
+    "@ionic-native/app-rate": "^4.19.0",
+    "@ionic-native/app-version": "^4.19.0",
     "@ionic-native/camera": "4.3.3",
     "@ionic-native/core": "~4.18.0",
     "@ionic-native/google-plus": "^4.18.0",
@@ -29,14 +32,23 @@
     "@ngx-translate/core": "8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
     "angularfire2": "^5.1.1",
+    "cordova-admob-sdk": "0.22.0",
     "cordova-android": "7.1.4",
+    "cordova-plugin-admob-free": "0.25.0",
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-plugin-apprate": "1.4.0",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-dialogs": "2.0.1",
+    "cordova-plugin-globalization": "1.11.0",
     "cordova-plugin-googleplus": "6.0.0",
+    "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^2.3.1",
+    "cordova-plugin-nativestorage": "2.3.2",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-promise-polyfill": "0.0.2",
     "d3-3": "0.0.0",
     "firebase": "^5.7.2",
     "ionic-angular": "3.9.2",
@@ -63,7 +75,10 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-apprate": {},
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-admob-free": {}
     },
     "platforms": [
       "android"

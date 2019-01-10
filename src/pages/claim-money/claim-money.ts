@@ -95,6 +95,7 @@ export class ClaimMoneyPage {
 
   /** This variable is used for update money */
   updateMoney() {
+    this.interstitialAdConfig();
     this.randomNumber = parseInt((Math.random() * (50 - 10) + 10).toFixed(0));
     this.userBalanceDetails.claimedBalance += this.randomNumber;
     this.afAuth.authState.subscribe(auth => {
@@ -128,6 +129,9 @@ export class ClaimMoneyPage {
       id: "ca-app-pub-8075364575456646/5652681549"
     };
     this.admobFree.banner.config(bannerAdd);
+    this.admobFree.banner.prepare().then(()=>{
+      console.log("ad")
+    })
   }
 
   interstitialAdConfig(){
@@ -137,5 +141,8 @@ export class ClaimMoneyPage {
       id: 'ca-app-pub-8075364575456646/6299548807'
     }
     this.admobFree.interstitial.config(interAd);
+    this.admobFree.interstitial.prepare().then(()=>{
+      console.log("ad")
+    })
   }
 }

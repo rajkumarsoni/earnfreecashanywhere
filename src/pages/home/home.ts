@@ -135,6 +135,9 @@ export class HomePage {
       id: "ca-app-pub-8075364575456646/1072585933"
     };
     this.admobFree.banner.config(bannerAdd);
+    this.admobFree.banner.prepare().then(()=>{
+      console.log("ad")
+    })
   }
 
 }

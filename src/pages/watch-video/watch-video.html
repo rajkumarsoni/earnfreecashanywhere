@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar   color="secondary">
-    <ion-title>Watch Video</ion-title>
+    <ion-title>Earn Extra Points</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,9 +24,9 @@
       <p class="timer">Watch Now</p>
     </ng-template>
     <button ion-button full (click)="claimMoney()" *ngIf="!userBalanceDetails" color="secondary" class="buttons" [disabled]="userBalanceDetails?.watchVideo >  userBalanceDetails?.currentTime">
-      Watch Video to earn money
+      Earn Extra Points
     </button>
     <button ion-button full (click)="updateMoney()" *ngIf="userBalanceDetails && userBalanceDetails.claimedBalance" color="secondary" class="buttons" [disabled]="userBalanceDetails.watchVideo >  userBalanceDetails.currentTime">
-      Watch Video to earn money
+      Earn Extra Points
     </button>
 </ion-content>
