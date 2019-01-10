@@ -54,7 +54,7 @@ export class ContactHisortyPage {
   }
   bannerAddConfig(){
     const bannerAdd: AdMobFreeBannerConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
       //id: "ca-app-pub-8075364575456646/5652681549"
     };
@@ -63,7 +63,7 @@ export class ContactHisortyPage {
 
   interstitialAdConfig(){
     const interAd: AdMobFreeInterstitialConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
       id: 'ca-app-pub-8075364575456646/7840302129'
       // id: need to add

@@ -109,7 +109,7 @@ export class WatchVideoPage {
   }
   interstitialAdConfig(){
     const interAd: AdMobFreeInterstitialConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
       id: 'ca-app-pub-8075364575456646/6299548807'
       // id: need to add
@@ -122,7 +122,7 @@ export class WatchVideoPage {
 
   watchVideo(){
     const reward: AdMobFreeRewardVideoConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
       id: 'ca-app-pub-8075364575456646/7056993056'
     }

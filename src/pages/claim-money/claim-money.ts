@@ -124,7 +124,7 @@ export class ClaimMoneyPage {
 
   bannerAddConfig(){
     const bannerAdd: AdMobFreeBannerConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
       id: "ca-app-pub-8075364575456646/5652681549"
     };
@@ -136,7 +136,7 @@ export class ClaimMoneyPage {
 
   interstitialAdConfig(){
     const interAd: AdMobFreeInterstitialConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
       id: 'ca-app-pub-8075364575456646/6299548807'
     }

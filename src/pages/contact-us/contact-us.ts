@@ -47,7 +47,7 @@ export class ContactUsPage {
   }
   interstitialAdConfig(){
     const interAd: AdMobFreeInterstitialConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
       id: 'ca-app-pub-8075364575456646/9303882441'
       // id: need to add

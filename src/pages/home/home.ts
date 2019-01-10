@@ -130,7 +130,7 @@ export class HomePage {
 
   bannerAddConfig(){
     const bannerAdd: AdMobFreeBannerConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
       id: "ca-app-pub-8075364575456646/1072585933"
     };
